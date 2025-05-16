@@ -4,11 +4,12 @@ const express = require('express');
      const cors = require('cors');
 
      const app = express();
-     app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type']
-}));
+     app.use((err, req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.status(500).json({ error: `Internal server error: ${err.message}` });
+});
      app.use(express.json({ limit: '50mb' }));
 
      async function processPage(page, scale, pageNum) {
