@@ -73,7 +73,7 @@ app.post('/process-pdf', async (req, res) => {
     }
 
     const results = [];
-    const scale = 1.5;
+    const scale = 1.0;
 
     for (let i = 1; i <= pdf.numPages; i++) {
       console.log(`[Backend] Processing page ${i}`);
@@ -124,3 +124,5 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`[Backend] Server running on port ${port}`);
 });
+
+  
